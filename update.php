@@ -2,11 +2,9 @@
 require 'database.php';
 if(isset($_POST['enregistrer'])){
     $name = htmlspecialchars($_POST['pseudo']);
-    var_dump($name);
     $mail = htmlspecialchars($_POST['mail']);
-    var_dump($mail);
     $statut = htmlspecialchars($_POST['statut']);
-    var_dump($statut);
+
     if((isset($name)) OR (isset($mail)) OR (isset($statut))){
         $database->update("users",[
             "name" => $name,
@@ -15,9 +13,23 @@ if(isset($_POST['enregistrer'])){
         ],[
             "id" => $_GET['id'],
         ]);
+
+        if(isset($_POST['mdp'])){
+            $mdp = htmlspecialchars($_POST['mdp']);
+
+            if($message == true){
+                $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+
+                $database->update("users", [
+                    "password" => $mdp,
+                ] , [
+                    "id" => $_GET['id'],
+                ]);
         header ('location: home.php');
     }
-
+        }
+        else{header ('location: home.php');}
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -26,7 +38,9 @@ if(isset($_POST['enregistrer'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier mon profil</title>
-    <link rel="stylesheet" href="style.css">
+    <!--<link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
 </head>
 <body>
 <fieldset class="container">

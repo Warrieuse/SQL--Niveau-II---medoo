@@ -1,0 +1,22 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}/*reset css j'enlève d'office tous les futures hypothétiques margin padding etc...*/
+
+body{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.container-fluid{
+    height: auto;
+    padding:10%;
+    background-color: thistle;
+    border-radius: 3px;
+}
+
+.h1{
+    font-size: large;
+    margin: 0px 40%;
+}

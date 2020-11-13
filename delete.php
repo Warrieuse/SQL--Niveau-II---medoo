@@ -2,7 +2,7 @@
 require 'database.php';
 
 $database->delete("users",[
-    "id" => $data['id'],
+    "id" => $_GET['id'],
 ]);
 header ('location: home.php');
 

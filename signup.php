@@ -119,59 +119,61 @@ if (isset($_POST['validation'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
-<body>
-<fieldset class="container">
-        <legend style="font-size:2em; font-weight:bold;">Inscription</legend>
+<body class="container-fluid">
+<fieldset>
+        <section class="row justify-content-center">
+        <legend class="h1">Inscription</legend>
         <br>
-        <form action="" method="POST" >
+        <form action="" method="POST" class="table-responsive col-10 col-md-8 col-lg-10">
             <table>
-                <tr>
+                <tr class="form-group">
                     <td style="text-align:right">
                         <label for="pseudo">Pseudo :</label>
                     </td>
                     <td>
-                        <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo" size="50" value="<?php if (isset($pseudo)) {echo $pseudo;}?>" > <!--Si Pseudo Sécurisé est remplis et valide alors on le garde affiché dans le form IDEM pour les uatres champs hormis MDP-->
+                        <input class="form-control" type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo" size="50" value="<?php if (isset($pseudo)) {echo $pseudo;}?>" > <!--Si Pseudo Sécurisé est remplis et valide alors on le garde affiché dans le form IDEM pour les uatres champs hormis MDP-->
                     </td>
                 </tr>
 
-                <tr>
+                <tr class="form-group">
                     <td style="text-align:right">
                         <label for="mail">Mail :</label>
                     </td>
                     <td>
-                        <input type="email" name="mail" id="mail" placeholder="votreemail@domaine.fr" size="50" value="
+                        <input class="form-control" type="email" name="mail" id="mail" placeholder="votreemail@domaine.fr" size="50" value="
 
                         <?php if (isset($mail)) {echo $mail;} ?>" >
                     </td>
                 </tr>
 
-                <tr>
+                <tr class="form-group">
                     <td style="text-align:right">
                         <label for="mailConf">Confirmation du mail :</label>
                     </td>
                     <td>
-                        <input type="email" name="mailConf" id="mailConf" placeholder="Confirmez votre email" size="50" value="
+                        <input class="form-control" type="email" name="mailConf" id="mailConf" placeholder="Confirmez votre email" size="50" value="
 
                         <?php if (isset($mailConf)) {echo $mailConf;} ?>" >
                     </td>
                 </tr>
 
-                <tr>
+                <tr class="form-group">
                     <td style="text-align:right">
                         <label for="mdp">Mot de passe :</label>
                     </td>
                     <td>
-                        <input type="password" name="mdp" id="mdp" placeholder="EntrezVotreMotDePasse*1" size="50">
+                        <input class="form-control" type="password" name="mdp" id="mdp" placeholder="EntrezVotreMotDePasse*1" size="50">
                     </td>
                 </tr>
 
-                <tr>
+                <tr class="form-group">
                     <td style="text-align:right">
                         <label for="mdpConf">Confirmation du mot de passe :</label>
                     </td>
                     <td>
-                        <input type="password" name="mdpConf" id="mdpConf" placeholder="Confirmez votre mot de passe" size="50">
+                        <input class="form-control" type="password" name="mdpConf" id="mdpConf" placeholder="Confirmez votre mot de passe" size="50">
                     </td>
                 </tr>
 
@@ -180,56 +182,64 @@ if (isset($_POST['validation'])) {
                         <label>Vous êtes :</label>
                     </td>
                     <td>
-                        <input type="radio" name="statut" id="statut" value="particulier">
-                        <label for="statut">un particulier</label>
-                        <input type="radio" name="statut" id="statut" value="professionnel">
-                        <label for="statut">un professionnel</label>
+                    <div class="custom-control custom-radio custom-control-inline pl-5 mb-2">
+                        <input class="custom-control-input"  type="radio" name="statut" id="statut" value="particulier">
+                        <label class="custom-control-label" for="statut">un particulier</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input class="custom-control-input" type="radio" name="statut" id="statut" value="professionnel">
+                        <label class="custom-control-label" for="statut">un professionnel</label>
+                    </div>
                     </td>
                 </tr>
 
             </table>
             <br><br>
-            <div>
-                <input type="checkbox" id="cgvd" name="cgvd" required>
-                <label for="scales" name="cgvd">Je reconnais avoir pris connaissance des conditions d’utilisation et y adhère totalement.</label>
-            </div>
-
-            <div id="ConditionMdp" style="display:block; text-align:center; text-decoration:none;">
-                <ul>Votre mot de passe doit contenir :
-                    <li>Au moins 10 caractères</li>
-                    <li>Au moins 1 majuscule</li>
-                    <li>Au moins 1 minuscule</li>
-                    <li>Au moins 1 chiffre</li>
-                    <li>Au moins 1 caractère spécial</li>
-                </ul>
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <div class="input-group-addon p-2">
+                    <input type="checkbox" id="cgvd" name="cgvd" required>
+                    </div>
+                    <div class="input-group-text p-2">
+                    <label class="form-control" for="scales" name="cgvd">Je reconnais avoir pris connaissance des conditions d’utilisation et y adhère totalement.</label>
+                    </div>
+                </div>
             </div>
 <hr>
-            </div>
             <table>
-                <tr>
+                <tr class="form-group m-1">
                     <td style="text-align:right">
                         <label for="question_secret">Veuillez choisir votre question secrète :</label>
                     </td>
                     <td>
-                        <select name="question_secret" id="question_secret" required>
+                        <select class="form-control" name="question_secret" id="question_secret" required>
                             <option value="Quel est le nom de famille de votre mère ?">Quel est le nom de famille de votre mère ?</option>
                             <option value="Quel est votre animal favoris ?">Quel est votre animal favoris ?</option>
                             <option value="Le nom de votre animal de compagnie">Le nom de votre animal de compagnie</option>
                         </select>
                     </td>
                 </tr>
-                <tr>
+                <tr class="form-group">
                     <td></td>
-                    <td><input type="text" name="reponse_secret" id="reponse_secret" size="38" placeholder="Entrez votre réponse" required></td>
+                    <td><input class="form-control" type="text" name="reponse_secret" id="reponse_secret" size="50" placeholder="Entrez votre réponse" required></td>
                 </tr>
             </table>
             <br>
 
             <div>
-                <input type="submit" value="Envoyer" name="validation">
+                <input class="form-control" type="submit" value="Envoyer" name="validation">
             </div>
-
+    </section>
         </form>
+        <div id="ConditionMdp" style="display:block; text-align:center; text-decoration:none;" class="row">
+            <ul class="list-group" class="col-12">Votre mot de passe doit contenir :
+                <li class="list-group-item list-group-item-action list-group-item-danger">Au moins 10 caractères</li>
+                <li class="list-group-item list-group-item-action list-group-item-danger">Au moins 1 majuscule</li>
+                <li class="list-group-item list-group-item-action list-group-item-danger">Au moins 1 minuscule</li>
+                <li class="list-group-item list-group-item-action list-group-item-danger">Au moins 1 chiffre</li>
+                <li class="list-group-item list-group-item-action list-group-item-danger">Au moins 1 caractère spécial</li>
+            </ul>
+        </div>
         <?php
 
         if(isset($error) OR isset($message))

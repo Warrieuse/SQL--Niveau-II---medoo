@@ -45,7 +45,11 @@ if (isset($_POST['submit'])) {
                             ]);
 
                             //$token = substr(md5(uniqid($user['id']))0,4);
+                            $_SESSION['id'] = $user['id'];
+                            $_SESSION['name'] = $user['name'];
                             $_SESSION['mail'] = $user['mail'];
+                            $_SESSION['date'] = $user['date'];
+                            $_SESSION['statut'] = $user['statut'];
                             echo '<script>alert("Bienvenue")</script>';
                             header("Location: home.php");
                         } else {
@@ -80,9 +84,9 @@ if (isset($_POST['submit'])) {
             //je compare la date d'entrée  de l'ip_block avec l'heure actuelle.
             //pour ca je transforme mes dates en secondes écoulées depuis 1970.
             $date_ip_block = date_timestamp_get($ip_block['date']);
-            var_dump($date_ip_block);
+            //var_dump($date_ip_block);
             $date_now = date_timestamp_get($date);
-            var_dump($date_now);
+            //var_dump($date_now);
             $fifteen_minute = 60 * 15;
             $date_ip_unblock = $date_ip_block + $fifteen_minute;
             // je compare les 2 dates en secondes il faut que 15 min se soit déroulé depuis l'enregistrement de ip dans ip_block
@@ -110,17 +114,17 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 
-<body>
-
-    <h1>ENREGISTREMENT DE LOGS</h1>
-
-    <form action="" method="post" class="form_connexion">
-        <h3 class="title_form">connexion</h3>
-        <table summary="formulaire de connexion" class="table_connexion">
+<body class="container-fluid m-3">
+    <div class="row p-4">
+    <h1 class="col-12 col-md-8 col-lg-6">ENREGISTREMENT DE LOGS</h1>
+    </div>
+    <form action="" method="post" class="row table-responsive">
+        <h3 class="col-12 col-md-8 col-lg-6">connexion</h3>
+        <table class="table col-10 col-md-8 ">
             <tbody>
                 <tr>
                     <td style="text-align:right">
